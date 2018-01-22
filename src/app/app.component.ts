@@ -10,4 +10,16 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Caelumpic';
+  fotos = []
+
+  constructor() {
+    var pegaFotos = new XMLHttpRequest()
+    pegaFotos.open('GET', 'http://localhost:3001/v1/fotos')
+    pegaFotos.send()
+    // Arrow Function Contexto Léxico (ou Leitura)
+    pegaFotos.addEventListener('load', () => {
+      console.log('A requisição chegou', this)
+      this.fotos = JSON.parse(pegaFotos.response) // Objeto == JSON == Texto puro
+    })
+  }
 }
