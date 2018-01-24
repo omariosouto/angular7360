@@ -1,9 +1,6 @@
-<!-- Esse cara é o app-root -->
-<h1>
-  {{ title }}!
-</h1>
-
-// Change Detection
-<foto *ngFor="let foto of fotos"
-      url="{{ foto.url }}"
-      [titulo]="foto.titulo"></foto>
+<!-- if(url.includes('/cadastro')) {
+  <cadastro></cadastro>
+} else {
+  <listagem></listagem>
+} -->
+<router-outlet></router-outlet>

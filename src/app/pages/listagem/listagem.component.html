@@ -1,0 +1,54 @@
+<!-- Esse cara é o app-root -->
+<nav>
+    <div class="nav-wrapper">
+        <a href="#" class="brand-logo">{{ title }}</a>
+        <ul class="right hide-on-med-and-down">
+          <li>
+            <a [routerLink]="['cadastro']">Cadastre novas fotos agora mesmo!</a>
+          </li>
+        </ul>
+    </div>
+  </nav>
+
+  <form action="" class="container">
+    <div class="row">
+        <div class="input-field col s12">
+        <i class="material-icons prefix">search</i>
+        <input id="busca" type="search" (keyup)="0" #inputDaBusca>
+        </div>
+    </div>
+  </form>
+
+  <h2 *ngIf="inputDaBusca.value" >Você está procurando por: {{ inputDaBusca.value }}</h2>
+
+
+  <div class="row">
+    <card class="col s12 m3 l3 xl3"
+          *ngFor="let foto of fotos | filtraPorTitulo: inputDaBusca.value " [titulo]="foto.titulo">
+      <a [routerLink]="['cadastro', foto._id]">
+        <foto url="{{ foto.url }}"
+        [titulo]="foto.titulo"></foto>
+      </a>
+      <button class="btn red darken-4" (click)="removeFoto(foto)">
+        Remover
+      </button>
+    </card>
+  </div>
+
+      <!-- <div class="card hoverable">
+      <div class="card-image">
+          <ng-content></ng-content>
+      </div>
+      <div class="card-content">
+          <span class="card-title">{{ titulo }}</span>
+          <p>I am a very simple card. I am good at containing small bits of information.
+          I am convenient because I require little markup to use effectively.</p>
+      </div>
+      <div class="card-action">
+      </div>
+      </div> -->
+
+
+  <!-- <foto *ngFor="let foto of fotos"
+        url="{{ foto.url }}"
+        [titulo]="foto.titulo"></foto> -->
